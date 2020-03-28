@@ -33,6 +33,14 @@ class Main extends Component {
                 />
             );
         }
+        const CampsiteWithId = ({ match }) => {
+            return (
+                <CampsiteInfo
+                    campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                    comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                />
+            );
+        }
         return (
             <div>
                 <Header />
@@ -40,7 +48,7 @@ class Main extends Component {
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
                     <Route exact path='/contactus' component={Contact} />
-
+                    <Route exact path='/directory/:campsiteId' component={CampsiteWithId} />
                     <Redirect to='/home' />
                 </Switch>
                 <Footer />
