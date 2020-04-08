@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Component } from 'react';
 
-function RenderComments({ comments }) {
+function RenderComments({ commentsm addComment, campstieId }) {
   if (comments) {
     return (
       <div className="col-md-5 m-1">
@@ -25,7 +25,7 @@ function RenderComments({ comments }) {
             </div>
           );
         })}
-        <CommentForm />
+        <CommentForm campstieId={campstieId} addComment={addComment} />
       </div>
     );
   }
@@ -70,9 +70,8 @@ class CommentForm extends Component {
   }
 
   valueCheck(values) {
-
-    // console.log(values);
-    alert(JSON.stringify(values));
+    this.toggleModal();
+    this.props.addComment(this.props.campsiteId, values.rating, valures.author, valures.text)
   }
 
   render() {
@@ -147,7 +146,10 @@ function CampsiteInfo(props) {
         </div>
         <div className="row">
           <RenderCampsite campsite={props.campsite} />
-          <RenderComments comments={props.comments} />
+          <RenderComments
+            comments={props.comments}
+            addComment={props.addComment}
+            campstieId={props.campsite.id} />
         </div>
       </div>
     );
