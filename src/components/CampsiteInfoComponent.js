@@ -3,6 +3,11 @@ import { Card, CardImg, CardText, CardBody, Button, Breadcrumb, BreadcrumbItem, 
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Component } from 'react';
+import { Loading } from './LoadingComponent';
+
+const required = val => val && val.length;
+const maxLength = len => val => !val || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
 
 function RenderComments({ comments, addComment, campsiteId }) {
   if (comments) {
@@ -25,7 +30,7 @@ function RenderComments({ comments, addComment, campsiteId }) {
             </div>
           );
         })}
-        <CommentForm campstieId={campstieId} addComment={addComment} />
+        <CommentForm campstieId={campsiteId} addComment={addComment} />
       </div>
     );
   }
@@ -43,9 +48,7 @@ function RenderCampsite({ campsite }) {
     </div>
   );
 }
-const required = val => val && val.length;
-const maxLength = len => val => !val || (val.length <= len);
-const minLength = len => val => val && (val.length >= len);
+
 
 class CommentForm extends Component {
   constructor(props) {
@@ -71,7 +74,7 @@ class CommentForm extends Component {
 
   valueCheck(values) {
     this.toggleModal();
-    this.props.addComment(this.props.campsiteId, values.rating, valures.author, valures.text)
+    this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text)
   }
 
   render() {
@@ -131,6 +134,26 @@ class CommentForm extends Component {
   }
 }
 function CampsiteInfo(props) {
+  if (props.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    );
+  }
+  if (props.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h4>{props.campsites.errMess}</h4>
+          </div>
+        </div>
+      </div>
+    );
+  }
   if (props.campsite) {
     return (
       <div className="container">
