@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { createForms } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -15,11 +15,12 @@ export const ConfigureStore = () => {
             comments: Comments,
             partners: Partners,
             promotions: Promotions,
+
             ...createForms({
                 feedbackForm: InitialFeedback
             })
         }),
-        applyMiddleware(thunk,logger)
+        applyMiddleware(thunk, logger)
     );
 
     return store;

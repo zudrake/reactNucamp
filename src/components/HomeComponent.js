@@ -6,22 +6,17 @@ import { FadeTransform } from 'react-animation-components';
 
 function RenderCard({ item, isLoading, errMess }) {
     if (isLoading) {
-        return <Loading />
+        return <Loading />;
     }
-
     if (errMess) {
-        return <h4>{errMess}</h4>
+        return <h4>{errMess}</h4>;
     }
-
     return (
-
         <FadeTransform
             in
             transformProps={{
                 exitTransform: 'scale(0.5) translateY(50%)'
-            }}
-            >
-
+            }}>
             <Card>
                 <CardImg src={baseUrl + item.image} alt={item.name} />
                 <CardBody>
@@ -33,8 +28,6 @@ function RenderCard({ item, isLoading, errMess }) {
     );
 }
 
-
-
 function Home(props) {
     return (
         <div className="container">
@@ -43,8 +36,7 @@ function Home(props) {
                     <RenderCard
                         item={props.campsite}
                         isLoading={props.campsitesLoading}
-                        errMess={props.errMess}
-
+                        errMess={props.campsitesErrMess}
                     />
                 </div>
                 <div className="col-md m-1">
@@ -55,7 +47,11 @@ function Home(props) {
                     />
                 </div>
                 <div className="col-md m-1">
-                    <RenderCard item={props.partner} />
+                    <RenderCard
+                        item={props.partner}
+                        isLoading={props.partnerLoading}
+                        errMess={props.partnerErrMess}
+                    />
                 </div>
             </div>
         </div>
