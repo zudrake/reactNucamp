@@ -3,6 +3,7 @@ body {
 }
 
 h1, h2, h3, .card-body>h5 {
+  /*only applied to cardbody h5*/
 font-family: "Lobster", cursive;
 }
 
@@ -11,8 +12,8 @@ h2 {
 }
 
 .card-img-overlay h5 {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+color: white;
+background-color: rgba(0, 0, 0, 0.5);
 }
 
 .row-content {
@@ -40,12 +41,15 @@ h2 {
 .navbar-dark {
   background-color: #901CAD;
 }
+
 .page-enter {
   opacity: 0;
+  transform: translateX(-100%);
 }
 
 .page-enter-active {
   opacity: 1;
+  transform: translateX(0%);
   transition: 300ms ease-in;
 }
 
@@ -55,15 +59,5 @@ h2 {
 
 .page-exit-active {
   opacity: 0;
-  transition: 300ms ease-out;
-}
-.page-enter {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-
-.page-enter-active {
-  opacity: 1;
-  transform: translateX(0%);
   transition: 300ms ease-out;
 }

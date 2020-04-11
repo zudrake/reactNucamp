@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 function RenderPartner({ partner }) {
     if (partner) {
         return (
-
             <React.Fragment>
-                <Media object src={partner.image} alt={partner.name} width="150" />
+                <Media object src={partner.image} alt={partner.name} style={{ width: 150 }} />
                 <Media body className="ml-5 mb-4">
                     <Media heading>{partner.name}</Media>
                     {partner.description}
@@ -17,18 +16,17 @@ function RenderPartner({ partner }) {
     }
     return <div />
 }
+
+
+
 function About(props) {
-
-    const partners = props.partners.map(partner => {
+    const aboutus = props.partners.map(partner => {
         return (
-            <Media key={partner.id} tag='li'>
-
+            <Media tag="li" key={partner.id} >
                 <RenderPartner partner={partner} />
-
             </Media>
         );
     });
-
     return (
         <div className="container">
             <div className="row">
@@ -83,7 +81,7 @@ function About(props) {
                 </div>
                 <div className="col mt-4">
                     <Media list>
-                        {partners}
+                        {aboutus}
                     </Media>
                 </div>
             </div>

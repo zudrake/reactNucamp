@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
-    Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label
+    Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron,
+    Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -11,7 +10,6 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.toggleNav = this.toggleNav.bind(this);
         this.state = {
             isNavOpen: false,
             isModalOpen: false
@@ -26,16 +24,19 @@ class Header extends Component {
             isNavOpen: !this.state.isNavOpen
         });
     }
+
     toggleModal() {
         this.setState({
             isModalOpen: !this.state.isModalOpen
         });
     }
+
     handleLogin(event) {
-        alert(`Username: ${this.username.value} Password : ${this.password.value} REmember: ${this.remember.checked}`);
+        alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
         this.toggleModal();
         event.preventDefault();
     }
+
     render() {
         return (
             <React.Fragment>
@@ -78,7 +79,7 @@ class Header extends Component {
                             </Nav>
                             <span className="navbar-text ml-auto">
                                 <Button outline onClick={this.toggleModal}>
-                                    <i className="fa fa-sign-in fa-lg" /> Login
+                                    <i className="fa fa-sign-in fa-lg" />Login
                                 </Button>
                             </span>
                         </Collapse>
@@ -101,8 +102,7 @@ class Header extends Component {
                             <FormGroup check>
                                 <Label check>
                                     <Input type="checkbox" name="remember"
-                                        innerRef={input => this.remember = input} />
-                                    Remember me
+                                        innerRef={input => this.remember = input} />Remember Me
                                 </Label>
                             </FormGroup>
                             <Button type="submit" value="submit" color="primary">Login</Button>
@@ -114,4 +114,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default Header; 
